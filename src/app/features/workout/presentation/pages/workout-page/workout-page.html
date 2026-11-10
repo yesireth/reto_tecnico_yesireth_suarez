@@ -4,11 +4,11 @@
   @if (facade.currentExercise(); as exercise) {
     <app-workout-timer
       [exerciseName]="exercise.name"
-      [exercisePosition]="facade.session().currentExerciseIndex + 1"
-      [exerciseTotal]="facade.session().exercises.length"
+      [exercisePosition]="facade.exercisePosition()"
+      [exerciseTotal]="facade.exerciseTotal()"
       [phase]="facade.phase()"
-      [secondsRemaining]="facade.session().secondsRemaining"
-      [completedRepetitions]="facade.session().completedRepetitions"
+      [secondsRemaining]="facade.secondsRemaining()"
+      [completedRepetitions]="facade.completedRepetitions()"
       [repetitionsNumber]="exercise.repetitionsNumber"
       [isRunning]="facade.isRunning()"
       (start)="facade.start()"
@@ -20,8 +20,8 @@
   <app-workout-toast [message]="facade.toastMessage()" />
 
   <app-exercise-list
-    [exercises]="facade.session().exercises"
-    [statuses]="facade.session().statuses"
-    [currentIndex]="facade.session().currentExerciseIndex"
+    [exercises]="facade.exercises()"
+    [statuses]="facade.statuses()"
+    [currentIndex]="facade.currentExerciseIndex()"
   />
 </div>

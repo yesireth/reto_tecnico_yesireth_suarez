@@ -1,8 +1,8 @@
 # Spec — Workout Coach Refactor
 
-**Versión:** 1.0.3  
+**Versión:** 1.0.4  
 **Fecha:** 2026-11-10  
-**Estado:** En progreso (puntos 2–5 hechos; pendiente Angular moderno formal, tests y entrega)  
+**Estado:** En progreso (puntos 2–6 hechos; pendiente tests y entrega)  
 **App:** Workout Coach (Angular 20+)
 
 ---
@@ -189,9 +189,9 @@ Todos los presentacionales: `input()` / `output()`, `ChangeDetectionStrategy.OnP
 | WS1 | Clean Architecture (capas + puerto + mapper + lógica fuera del UI) | WS0 | Hecho |
 | WS2 | Container / Presentational | WS1 | Hecho |
 | WS3 | Feature multi-ejercicio + criterios de aceptación | WS1, WS2 | Hecho |
-| WS4 | Angular moderno (signals, @if/@for, OnPush, cleanup) | WS1–WS3 | Pendiente |
+| WS4 | Angular moderno (signals, @if/@for, OnPush, cleanup) | WS1–WS3 | Hecho |
 | WS5 | Tests dominio / application / presentational | WS1–WS3 | Pendiente |
-| WS6 | Sección microfrontends en spec | WS0 | Pendiente |
+| WS6 | Sección microfrontends en spec | WS0 | Hecho (sección 11) |
 | WS7 | Evidencia build/tests + entrega | WS1–WS5 | Pendiente |
 
 ---
@@ -218,9 +218,20 @@ Verificación automatizada del dominio: `npx tsx scripts/verify-acceptance.mts`.
 - [x] DTO `snake_case` mapeado en infrastructure.
 - [x] Lógica de temporizador/transiciones fuera del componente de UI.
 
+### Angular moderno
+
+- [x] Standalone components en toda la feature y `AppComponent`.
+- [x] Signals + `computed()` en `WorkoutSessionFacade`; template del container signal-driven.
+- [x] `inject()` (sin inyección por constructor de dependencias).
+- [x] `input()` / `output()` en presentacionales.
+- [x] Control flow `@if` / `@for` (sin `*ngIf` / `*ngFor`).
+- [x] `ChangeDetectionStrategy.OnPush` en container, presentacionales y root.
+- [x] TypeScript estricto sin `any` en la feature.
+- [x] Cleanup de timer con `DestroyRef.onDestroy()` (sin fugas al destruir el facade).
+
 ### Calidad
 
-- [ ] TypeScript estricto sin `any` en la feature.
+- [x] TypeScript estricto sin `any` en la feature.
 - [ ] Tests de dominio y application + ≥1 presentacional.
 - [ ] `npm run build` y `npm test` en verde (evidencia en sección 12).
 
@@ -294,3 +305,4 @@ npm test       → (pendiente — WS5)
 | 1.0.1 | 2026-11-10 | WS1 aplicado: capas domain/application/infrastructure/presentation; evidencia de build OK |
 | 1.0.2 | 2026-11-10 | WS2: Container WorkoutPage + presentacionales Timer/List/Item/Toast (input/output/OnPush) |
 | 1.0.3 | 2026-11-10 | WS3: entrenamiento completo multi-ejercicio; criterios de aceptación verificados |
+| 1.0.4 | 2026-11-10 | WS4: Angular moderno — Signals/computed, DestroyRef, OnPush root, template signal-driven |
