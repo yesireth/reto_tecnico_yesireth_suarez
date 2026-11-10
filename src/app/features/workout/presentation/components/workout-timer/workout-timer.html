@@ -1,0 +1,24 @@
+<section class="workout-timer">
+  <h2>{{ exerciseName() }}</h2>
+
+  <div class="phase" [class.rest]="phase() === 'rest'">
+    {{ phaseLabel(phase()) }}
+  </div>
+
+  <div class="timer">{{ formatSeconds(secondsRemaining()) }}</div>
+
+  <p>
+    Completed repetitions:
+    {{ completedRepetitions() }} / {{ repetitionsNumber() }}
+  </p>
+
+  <div class="controls">
+    @if (!isRunning() && phase() !== 'finished') {
+      <button type="button" (click)="start.emit()">Start</button>
+    }
+    @if (isRunning()) {
+      <button type="button" (click)="pause.emit()">Pause</button>
+    }
+    <button type="button" (click)="reset.emit()">Reset</button>
+  </div>
+</section>

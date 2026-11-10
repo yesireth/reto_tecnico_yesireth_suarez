@@ -1,8 +1,8 @@
 # Spec — Workout Coach Refactor
 
-**Versión:** 1.0.1  
+**Versión:** 1.0.2  
 **Fecha:** 2026-11-10  
-**Estado:** En progreso (SDD + Clean Architecture completados; pendiente componentización y siguientes)  
+**Estado:** En progreso (SDD + Clean Architecture + Container/Presentational; pendiente feature polish, tests y entrega)  
 **App:** Workout Coach (Angular 20+)
 
 ---
@@ -187,7 +187,7 @@ Todos los presentacionales: `input()` / `output()`, `ChangeDetectionStrategy.OnP
 |----|------------|--------------|--------|
 | WS0 | Spec SDD versionada | — | Hecho (esta spec) |
 | WS1 | Clean Architecture (capas + puerto + mapper + lógica fuera del UI) | WS0 | Hecho |
-| WS2 | Container / Presentational | WS1 | Pendiente |
+| WS2 | Container / Presentational | WS1 | Hecho |
 | WS3 | Feature multi-ejercicio + criterios de aceptación | WS1, WS2 | Pendiente |
 | WS4 | Angular moderno (signals, @if/@for, OnPush, cleanup) | WS1–WS3 | Pendiente |
 | WS5 | Tests dominio / application / presentational | WS1–WS3 | Pendiente |
@@ -290,3 +290,4 @@ npm test       → (pendiente — WS5)
 |---------|-------|--------|
 | 1.0.0 | 2026-11-10 | Spec inicial: SDD completo + diseño Clean Architecture, feature multi-ejercicio, MFE/NgRx (diseño) |
 | 1.0.1 | 2026-11-10 | WS1 aplicado: capas domain/application/infrastructure/presentation; evidencia de build OK |
+| 1.0.2 | 2026-11-10 | WS2: Container WorkoutPage + presentacionales Timer/List/Item/Toast (input/output/OnPush) |

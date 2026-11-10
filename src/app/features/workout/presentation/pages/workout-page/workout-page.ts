@@ -1,34 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { WorkoutSessionFacade } from '../../../application/workout-session.facade';
-import { ExerciseStatus } from '../../../domain/models/exercise.model';
+import { ExerciseListComponent } from '../../components/exercise-list/exercise-list';
+import { WorkoutTimerComponent } from '../../components/workout-timer/workout-timer';
+import { WorkoutToastComponent } from '../../components/workout-toast/workout-toast';
 
+/**
+ * Container: orquesta facade/estado y cablea presentacionales.
+ * No contiene lógica de timer ni transiciones de dominio.
+ */
 @Component({
   selector: 'app-workout-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [WorkoutTimerComponent, ExerciseListComponent, WorkoutToastComponent],
   templateUrl: './workout-page.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkoutPageComponent implements OnInit {
   protected readonly facade = inject(WorkoutSessionFacade);
 
   ngOnInit(): void {
     void this.facade.load();
-  }
-
-  protected statusLabel(status: ExerciseStatus): string {
-    switch (status) {
-      case 'pending':
-        return 'Pendiente';
-      case 'in_progress':
-        return 'En curso';
-      case 'completed':
-        return 'Completado';
-    }
-  }
-
-  protected formatSeconds(seconds: number): string {
-    const value = Math.max(0, seconds);
-    return value < 10 ? `00:0${value}` : `00:${value}`;
   }
 }
