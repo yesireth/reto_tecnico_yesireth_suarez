@@ -1,0 +1,53 @@
+<div class="card">
+  <h1>Workout Coach</h1>
+
+  @if (facade.currentExercise(); as exercise) {
+    <h2>{{ exercise.name }}</h2>
+
+    <div
+      class="phase"
+      [class.rest]="facade.phase() === 'rest'"
+    >
+      @if (facade.phase() === 'rest') {
+        Rest
+      } @else if (facade.phase() === 'finished') {
+        Finished
+      } @else {
+        Exercise
+      }
+    </div>
+
+    <div class="timer">{{ formatSeconds(facade.session().secondsRemaining) }}</div>
+
+    <p>
+      Completed repetitions:
+      {{ facade.session().completedRepetitions }} / {{ exercise.repetitionsNumber }}
+    </p>
+  }
+
+  <div class="controls">
+    @if (!facade.isRunning() && facade.phase() !== 'finished') {
+      <button type="button" (click)="facade.start()">Start</button>
+    }
+    @if (facade.isRunning()) {
+      <button type="button" (click)="facade.pause()">Pause</button>
+    }
+    <button type="button" (click)="facade.reset()">Reset</button>
+  </div>
+
+  @if (facade.toastMessage()) {
+    <div class="toast">{{ facade.toastMessage() }}</div>
+  }
+
+  <section class="exercise-list">
+    <h3>Exercises</h3>
+    <ul>
+      @for (item of facade.session().exercises; track item.id; let i = $index) {
+        <li [class.active]="i === facade.session().currentExerciseIndex">
+          <span>{{ item.name }}</span>
+          <span class="status">{{ statusLabel(facade.session().statuses[i]) }}</span>
+        </li>
+      }
+    </ul>
+  </section>
+</div>
