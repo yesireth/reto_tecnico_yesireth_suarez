@@ -1,8 +1,8 @@
 # Spec — Workout Coach Refactor
 
-**Versión:** 1.0.4  
+**Versión:** 1.0.5  
 **Fecha:** 2026-11-10  
-**Estado:** En progreso (puntos 2–6 hechos; pendiente tests y entrega)  
+**Estado:** En progreso (puntos 2–7 hechos; pendiente evidencia de entrega formal)  
 **App:** Workout Coach (Angular 20+)
 
 ---
@@ -190,7 +190,7 @@ Todos los presentacionales: `input()` / `output()`, `ChangeDetectionStrategy.OnP
 | WS2 | Container / Presentational | WS1 | Hecho |
 | WS3 | Feature multi-ejercicio + criterios de aceptación | WS1, WS2 | Hecho |
 | WS4 | Angular moderno (signals, @if/@for, OnPush, cleanup) | WS1–WS3 | Hecho |
-| WS5 | Tests dominio / application / presentational | WS1–WS3 | Pendiente |
+| WS5 | Tests dominio / application / presentational | WS1–WS3 | Hecho |
 | WS6 | Sección microfrontends en spec | WS0 | Hecho (sección 11) |
 | WS7 | Evidencia build/tests + entrega | WS1–WS5 | Pendiente |
 
@@ -232,8 +232,8 @@ Verificación automatizada del dominio: `npx tsx scripts/verify-acceptance.mts`.
 ### Calidad
 
 - [x] TypeScript estricto sin `any` en la feature.
-- [ ] Tests de dominio y application + ≥1 presentacional.
-- [ ] `npm run build` y `npm test` en verde (evidencia en sección 12).
+- [x] Tests de dominio y application + ≥1 presentacional.
+- [x] `npm run build` y `npm test` en verde (evidencia en sección 12).
 
 ---
 
@@ -292,8 +292,15 @@ Para el alcance actual del reto, el **Facade + Signals + domain puro** es sufici
 
 ```text
 npm run build  → OK (2026-11-10) — bundle en dist/workout-coach
-npm test       → (pendiente — WS5)
+npm test       → OK (2026-11-10) — 25 SUCCESS (ChromeHeadless)
 ```
+
+Suites:
+- `domain/services/workout-session.service.spec.ts` — flujo completo + bordes (lista vacía, restTime 0, pause/reset)
+- `application/workout-session.facade.spec.ts` — load/start/timer/pause/reset + error de repositorio
+- `infrastructure/mappers/exercise.mapper.spec.ts` — snake_case → dominio
+- `presentation/.../workout-timer.spec.ts` — render, controles y outputs
+- `app.component.spec.ts` — smoke del root
 
 ---
 
@@ -306,3 +313,4 @@ npm test       → (pendiente — WS5)
 | 1.0.2 | 2026-11-10 | WS2: Container WorkoutPage + presentacionales Timer/List/Item/Toast (input/output/OnPush) |
 | 1.0.3 | 2026-11-10 | WS3: entrenamiento completo multi-ejercicio; criterios de aceptación verificados |
 | 1.0.4 | 2026-11-10 | WS4: Angular moderno — Signals/computed, DestroyRef, OnPush root, template signal-driven |
+| 1.0.5 | 2026-11-10 | WS5: tests dominio/application/mapper/presentational — 25 SUCCESS |
