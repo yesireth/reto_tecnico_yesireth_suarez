@@ -1,7 +1,11 @@
 <section class="workout-timer">
+  <p class="exercise-progress">
+    Exercise {{ exercisePosition() }} / {{ exerciseTotal() }}
+  </p>
+
   <h2>{{ exerciseName() }}</h2>
 
-  <div class="phase" [class.rest]="phase() === 'rest'">
+  <div class="phase" [class.rest]="phase() === 'rest'" [class.finished]="phase() === 'finished'">
     {{ phaseLabel(phase()) }}
   </div>
 

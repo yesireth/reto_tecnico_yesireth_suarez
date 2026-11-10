@@ -2,11 +2,12 @@
   <h3>Exercises</h3>
   <ul>
     @for (item of exercises(); track item.id; let i = $index) {
-      <app-exercise-item
+      <li
+        app-exercise-item
         [exercise]="item"
         [status]="statuses()[i]"
         [active]="i === currentIndex()"
-      />
+      ></li>
     }
   </ul>
 </section>

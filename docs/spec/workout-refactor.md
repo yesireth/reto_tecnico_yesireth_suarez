@@ -1,8 +1,8 @@
 # Spec — Workout Coach Refactor
 
-**Versión:** 1.0.2  
+**Versión:** 1.0.3  
 **Fecha:** 2026-11-10  
-**Estado:** En progreso (SDD + Clean Architecture + Container/Presentational; pendiente feature polish, tests y entrega)  
+**Estado:** En progreso (puntos 2–5 hechos; pendiente Angular moderno formal, tests y entrega)  
 **App:** Workout Coach (Angular 20+)
 
 ---
@@ -188,7 +188,7 @@ Todos los presentacionales: `input()` / `output()`, `ChangeDetectionStrategy.OnP
 | WS0 | Spec SDD versionada | — | Hecho (esta spec) |
 | WS1 | Clean Architecture (capas + puerto + mapper + lógica fuera del UI) | WS0 | Hecho |
 | WS2 | Container / Presentational | WS1 | Hecho |
-| WS3 | Feature multi-ejercicio + criterios de aceptación | WS1, WS2 | Pendiente |
+| WS3 | Feature multi-ejercicio + criterios de aceptación | WS1, WS2 | Hecho |
 | WS4 | Angular moderno (signals, @if/@for, OnPush, cleanup) | WS1–WS3 | Pendiente |
 | WS5 | Tests dominio / application / presentational | WS1–WS3 | Pendiente |
 | WS6 | Sección microfrontends en spec | WS0 | Pendiente |
@@ -200,13 +200,15 @@ Todos los presentacionales: `input()` / `output()`, `ChangeDetectionStrategy.OnP
 
 ### Feature (entrenamiento completo)
 
-- [ ] Al cargar, todos los ejercicios están pendientes y la sesión no inicia sola.
-- [ ] Iniciar activa el primer ejercicio y su `repetition_time`.
-- [ ] Al llegar a cero se inicia descanso con `rest_time`.
-- [ ] Al terminar descanso se incrementa la repetición completada.
-- [ ] Al completar repeticiones, el ejercicio se completa y arranca el siguiente.
-- [ ] Al completar el último ejercicio, el entrenamiento finaliza.
-- [ ] Pausar conserva progreso. Reiniciar vuelve al estado inicial.
+- [x] Al cargar, todos los ejercicios están pendientes y la sesión no inicia sola.
+- [x] Iniciar activa el primer ejercicio y su `repetition_time`.
+- [x] Al llegar a cero se inicia descanso con `rest_time`.
+- [x] Al terminar descanso se incrementa la repetición completada.
+- [x] Al completar repeticiones, el ejercicio se completa y arranca el siguiente.
+- [x] Al completar el último ejercicio, el entrenamiento finaliza.
+- [x] Pausar conserva progreso. Reiniciar vuelve al estado inicial.
+
+Verificación automatizada del dominio: `npx tsx scripts/verify-acceptance.mts`.
 
 ### Arquitectura
 
@@ -291,3 +293,4 @@ npm test       → (pendiente — WS5)
 | 1.0.0 | 2026-11-10 | Spec inicial: SDD completo + diseño Clean Architecture, feature multi-ejercicio, MFE/NgRx (diseño) |
 | 1.0.1 | 2026-11-10 | WS1 aplicado: capas domain/application/infrastructure/presentation; evidencia de build OK |
 | 1.0.2 | 2026-11-10 | WS2: Container WorkoutPage + presentacionales Timer/List/Item/Toast (input/output/OnPush) |
+| 1.0.3 | 2026-11-10 | WS3: entrenamiento completo multi-ejercicio; criterios de aceptación verificados |

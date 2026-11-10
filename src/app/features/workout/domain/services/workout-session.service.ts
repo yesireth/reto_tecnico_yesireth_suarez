@@ -101,6 +101,16 @@ export function tickSession(session: WorkoutSession): WorkoutSession {
 function beginRest(session: WorkoutSession): WorkoutSession {
   const current = session.exercises[session.currentExerciseIndex];
 
+  // Si no hay descanso configurado, se completa la repetición de inmediato.
+  if (current.restTime <= 0) {
+    return completeRest({
+      ...session,
+      phase: 'rest',
+      secondsRemaining: 0,
+      toastMessage: 'Rest time',
+    });
+  }
+
   return {
     ...session,
     phase: 'rest',

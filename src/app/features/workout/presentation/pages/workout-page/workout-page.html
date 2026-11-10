@@ -4,6 +4,8 @@
   @if (facade.currentExercise(); as exercise) {
     <app-workout-timer
       [exerciseName]="exercise.name"
+      [exercisePosition]="facade.session().currentExerciseIndex + 1"
+      [exerciseTotal]="facade.session().exercises.length"
       [phase]="facade.phase()"
       [secondsRemaining]="facade.session().secondsRemaining"
       [completedRepetitions]="facade.session().completedRepetitions"

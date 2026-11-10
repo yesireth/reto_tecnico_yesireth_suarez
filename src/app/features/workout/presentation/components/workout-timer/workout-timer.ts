@@ -9,6 +9,8 @@ import { WorkoutPhase } from '../../../domain/models/exercise.model';
 })
 export class WorkoutTimerComponent {
   readonly exerciseName = input.required<string>();
+  readonly exercisePosition = input.required<number>();
+  readonly exerciseTotal = input.required<number>();
   readonly phase = input.required<WorkoutPhase>();
   readonly secondsRemaining = input.required<number>();
   readonly completedRepetitions = input.required<number>();
@@ -26,6 +28,8 @@ export class WorkoutTimerComponent {
 
   protected phaseLabel(phase: WorkoutPhase): string {
     switch (phase) {
+      case 'idle':
+        return 'Ready';
       case 'rest':
         return 'Rest';
       case 'finished':
